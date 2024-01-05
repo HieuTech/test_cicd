@@ -1,43 +1,65 @@
+import { signInWithGoogle } from "../firebase.js";
 
-let dataUsers = [{
+
+document.getElementById("signUp").addEventListener("submit",(e)=>{
+  signUp(e);
+});
+
+document.getElementById('signUpWithGoogle').addEventListener("click",async ()=>{
+
+   try {
+    let result = await signInWithGoogle();
+    let users = JSON.parse(localStorage.getItem("users") || "[]")
+   
+    let userLogin = {
+      email: result.user.email,
+      password: hashPassword("SDKWMKDW"),
+      id:"" + Math.ceil(Date.now() * Math.random()),
+      avatar: result.user.photoURL
+    }
+    let user = users.find(user => user.email == result.user.email)
+    if(!user){
+
+      users = [...users, userLogin]
+      localStorage.setItem("users",JSON.stringify(users));
+    }
     
-       id: "" + Math.ceil(Date.now() * Math.random()),
-       email: "test",
-       password: "test"
-     
-}]
+    let token = createToken(userLogin);
+    localStorage.setItem("token",token);
+    window.location.href = "/"
+  
 
+  } catch (error) {
+      console.log("sign up failed");
+  }
+})
 
-if(!localStorage.getItem("user")){
-    localStorage.setItem("user",JSON.stringify(dataUsers))
-}
+  function signUp(e) {
+  e.preventDefault();
+  let email = e.target.email.value;
+  let password = e.target.password.value;
+  let users = JSON.parse(localStorage.getItem("users") || "[]");
 
-function signUp(e) {
-    e.preventDefault();
-  let email = document.querySelector("#InputEmail1").value;
-  let password = document.querySelector("#InputPassword1").value;
-  let users = JSON.parse(localStorage.getItem("user")) ;
+  let newUser = {
+    id: "" + Math.ceil(Date.now() * Math.random()),
+    email,
+    password: hashPassword(password)
+  };
 
+  let user = users.find((user) => user.email == email);
 
-  let user = users.find((user) => user.email === email);
-
-  if(user){
-    alert("ten dang ky da ton tai")
-    return
+  if (user) {
+    alert("ten dang ky da ton tai");
+    return;
   }
 
-   let newUser = 
-     {
-       id: "" + Math.ceil(Date.now() * Math.random()),
-       email,
-       password,
-     }
-   
-   dataUsers.push(newUser);
+  users = [...users, newUser]
 
-    localStorage.setItem("user", JSON.stringify(dataUsers));
-  
-    window.location.href = "/signin"
+  localStorage.setItem("users", JSON.stringify(users));
+
+  window.location.href = "/signin";
 }
+
+
 
 

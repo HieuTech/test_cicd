@@ -1,28 +1,71 @@
+import { signInWithGoogle } from "../firebase.js";
+
+document
+  .getElementById("signInWithGoogle")
+  .addEventListener("click", async () => {
+    try {
+      let result = await signInWithGoogle();
+      console.log(result);
+
+      let users = JSON.parse(localStorage.getItem("users") || "[]");
+
+      let checkUser = users.find((user) => user.email == result.user.email);
+   
+      if(!checkUser) {
+       let userLogin = {
+         id: "" + Math.ceil(Date.now() * Math.random()),
+         email: result.user.email,
+         password: hashPassword("EFDMWDMMWS"),
+         avatar: result.user.photoURL,
+       };
+
+       users = [...users, userLogin];
+       localStorage.setItem("users", JSON.stringify(users));
+
+       let token = createToken(userLogin);
+       localStorage.setItem("token", token);
+       window.location.href = "/";
+      }
+
+        let token = createToken(checkUser);
+        localStorage.setItem("token", token);
+        window.location.href = "/";
+        //register+login
+        //login
+       
+      
+    }catch (error) {
+      alert("vui long thu lai");
+    }
+  });
+
+document.getElementById("signIn").addEventListener("submit", (e) => {
+  signIn(e);
+});
 
 function signIn(e) {
-    e.preventDefault();
-  let users = JSON.parse(localStorage.getItem("user"));
+  e.preventDefault();
+  let users = JSON.parse(localStorage.getItem("users") || "[]");
 
-  let emailSignIn = document.querySelector("#inputEmail").value;
-  let passwordSignIn = document.querySelector("#inputPassword").value;
+  let email = e.target.email.value;
+  let password = hashPassword(e.target.password.value);
 
-  let loginEmail = users.find((user) => user.email == emailSignIn);
-  
-  if (!loginEmail) {
-    alert("email ko ton tai, hay dang ky");
-    return;
-  }
-  let loginPassword = users.find((user) => user.password == passwordSignIn);
-  if (!loginPassword) {
-    alert("password ko dung!");
+  let user = users.find(
+    (user) => user.email == email && user.password == password
+  );
+  console.log(user);
+  if (!user) {
+    alert("email or password ko dung");
     return;
   }
 
   let userLogin = {
-    token: ""+ Math.ceil(Date.now() * Math.random()),
-    loginEmail,
-    loginPassword,
+    email,
+    password,
   };
-  localStorage.setItem("userLogin", JSON.stringify(userLogin));
+
+  let token = createToken(userLogin);
+  localStorage.setItem("token", token);
+
   window.location.href = "/";
 }
