@@ -10,36 +10,36 @@ document
       let users = JSON.parse(localStorage.getItem("users") || "[]");
 
       let checkUser = users.find((user) => user.email == result.user.email);
-   
-      if(!checkUser) {
-       let userLogin = {
-         id: "" + Math.ceil(Date.now() * Math.random()),
-         email: result.user.email,
-         password: hashPassword("EFDMWDMMWS"),
-         avatar: result.user.photoURL,
-       };
 
-       users = [...users, userLogin];
-       localStorage.setItem("users", JSON.stringify(users));
+      if (!checkUser) {
+        let userLogin = {
+          id: "" + Math.ceil(Date.now() * Math.random()),
+          email: result.user.email,
+          password: hashPassword("EFDMWDMMWS"),
+          avatar: result.user.photoURL,
+        };
 
-       let token = createToken(userLogin);
-       localStorage.setItem("token", token);
-       window.location.href = "/";
-      }
+        users = [...users, userLogin];
+        localStorage.setItem("users", JSON.stringify(users));
 
-        let token = createToken(checkUser);
+        let token = createToken(userLogin);
         localStorage.setItem("token", token);
         window.location.href = "/";
-        //register+login
-        //login
-       
-      
-    }catch (error) {
+      }
+
+      let token = createToken(checkUser);
+      localStorage.setItem("token", token);
+      window.location.href = "/";
+      //register+login
+      //login
+    } catch (error) {
       alert("vui long thu lai");
     }
   });
 
 document.getElementById("signIn").addEventListener("submit", (e) => {
+  e.preventDefault();
+
   signIn(e);
 });
 
