@@ -1,5 +1,7 @@
 import { signInWithGoogle } from "../firebase.js";
-
+if (checkLogin()) {
+  window.location.href = "/";
+}
 document
   .getElementById("signInWithGoogle")
   .addEventListener("click", async () => {
@@ -38,7 +40,6 @@ document
   });
 
 document.getElementById("signIn").addEventListener("submit", (e) => {
-  e.preventDefault();
 
   signIn(e);
 });
