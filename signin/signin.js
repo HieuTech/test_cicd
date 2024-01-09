@@ -44,6 +44,8 @@ document.getElementById("signIn").addEventListener("submit", (e) => {
   signIn(e);
 });
 
+
+
 function signIn(e) {
   e.preventDefault();
   let users = JSON.parse(localStorage.getItem("users") || "[]");
@@ -51,6 +53,10 @@ function signIn(e) {
   let email = e.target.email.value;
   let password = hashPassword(e.target.password.value);
 
+  if (!email || !password) {
+    alert("Email và Password không được để trống.");
+    return;
+  }
   let user = users.find(
     (user) => user.email == email && user.password == password
   );
@@ -70,3 +76,4 @@ function signIn(e) {
 
   window.location.href = "/";
 }
+

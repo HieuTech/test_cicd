@@ -40,6 +40,17 @@ document.getElementById('signUpWithGoogle').addEventListener("click",async ()=>{
   let password = e.target.password.value;
   let users = JSON.parse(localStorage.getItem("users") || "[]");
 
+
+if (!email || !password) {
+  alert("Email và Password không được để trống.");
+  return
+} else if (!isValidEmail(email)) {
+  alert("Email không hợp lệ.");
+  return
+} else if (!isValidPassword(password)) {
+  alert("Password không hợp lệ. Yêu cầu ít nhất 6 ký tự, 1 viết hoa, 1 số và 1 ký tự đặc biệt.");
+  return
+} 
   let newUser = {
     id: "" + Math.ceil(Date.now() * Math.random()),
     email,
@@ -63,3 +74,12 @@ document.getElementById('signUpWithGoogle').addEventListener("click",async ()=>{
 
 
 
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPassword(password) {
+  return /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]).{6,}$/.test(
+    password
+  );
+}
