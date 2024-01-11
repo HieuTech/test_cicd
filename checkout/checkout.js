@@ -7,7 +7,10 @@ function renderInfo(){
  users.forEach((user) => {
    if (user.email == tokenData.userLogin.email) {
      user.cart.forEach((cart) => {
-       totalPrice += cart.productPrice;
+         totalPrice += parseInt(
+           cart.productPrice.replace(" VND", "").replace(".", "")
+         );
+
        document.querySelector(
          "#total-price"
        ).innerHTML = `TotalPrice:  ${totalPrice} VND`;

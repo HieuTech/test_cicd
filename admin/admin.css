@@ -1,19 +1,20 @@
- body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
 
+.container{
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+            background-color: #f4e4e4;
+
+}
         #form-admin {
+            
             background-color: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             width: 300px;
+            margin: 20px;
         }
 
         #form-admin div {
@@ -26,8 +27,7 @@
         }
 
         input[type="text"],
-        input[type="number"],
-        input[type="file"] {
+        input[type="number"]{
             width: 100%;
             padding: 8px;
             border-radius: 4px;
@@ -55,3 +55,38 @@
             box-shadow: 0 2px #666;
             transform: translateY(4px);
         }
+        .btn-delete{
+            background-color: red;
+        }
+        .btn-update{
+            background-color: blue;
+        }
+        h2{
+            color:rgb(78, 218, 164)
+        }
+
+        /* Example CSS styles */
+.product-row {
+  background-color: #f0f0f0;
+}
+
+.product-image img {
+  max-width: 100px;
+  height: auto;
+}
+
+.product-name,
+.product-price {
+  text-align: center;
+}
+
+.product-quantity input {
+  width: 40px;
+}
+
+.product-update,
+.product-delete {
+  text-align: center;
+}
+
+/* Add more CSS styles as needed */

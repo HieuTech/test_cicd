@@ -169,22 +169,7 @@ function renderProduct(products) {
     })
     .join(""));
 }
-// function renderProduct(products) {
-//   localStorage.setItem("products", JSON.stringify(products));
 
-//   let tableDataString = ``;
-//   for (let i in products) {
-//     tableDataString += `
-//                     <p>${products[i].productName}</p>
-//                     <p>${products[i].productPrice}</p>
-//                     <img src="${products[i].productImage}"  class="product-image">
-//            `;
-//   }
-
-//   console.log(tableDataString);
-
-//   return tableDataString;
-// }
 
 function createToken(userLogin) {
   let dataJsonStr = JSON.stringify({
