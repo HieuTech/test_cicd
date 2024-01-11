@@ -20,9 +20,7 @@ function addToCart(productId) {
   users.forEach((user) => {
     if (user.email == tokenData.userLogin.email) {
       user.cart.push(product);
-       user.cart.forEach((cart) => {
-        quantity = cart.quantity += 1;
-       });
+      
     }
   });
   localStorage.setItem("users", JSON.stringify(users));
@@ -64,7 +62,7 @@ function showProduct() {
         document.querySelector(
           ".totalPrice"
         ).innerHTML = `TotalPrice:  ${totalPrice} VND`;
-
+            quantity += cart.quantity
         document.querySelector(
           ".quantity"
         ).innerHTML = `Quantity:  ${quantity} Unit`;

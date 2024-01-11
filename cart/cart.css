@@ -1,8 +1,9 @@
 #list{
+
       display: grid;
-            padding: 10px;
-            grid-template-columns: repeat(10, 1fr); /* Tạo 4 cột */
-            gap: 10px; /* Khoảng cách giữa các grid item */
+     padding: 10px 600px;
+    grid-template-columns: repeat(10, 1fr); /* Tạo 4 cột */
+     gap: 10px; /* Khoảng cách giữa các grid item */
 }
 
 .grid-item {
