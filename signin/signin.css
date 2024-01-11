@@ -1,0 +1,71 @@
+/* signin.css */
+
+/* Định dạng phần form và nền của trang */
+.body {
+    text-align: center;
+    background-color: #e2e8e9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+label{
+    color: blue
+}
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: rgb(115, 224, 115);
+}
+
+/* Định dạng phần input và button */
+.form-group {
+    margin-bottom: 15px;
+}
+
+
+label {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+input.form-control {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button.btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Định dạng "Sign In with Google" và căn giữa nó */
+#signInWithGoogle {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#signInWithGoogle i {
+    margin-right: 5px;
+    color: #007bff;
+}

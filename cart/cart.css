@@ -1,0 +1,43 @@
+#list{
+      display: grid;
+            padding: 10px;
+            grid-template-columns: repeat(10, 1fr); /* Tạo 4 cột */
+            gap: 10px; /* Khoảng cách giữa các grid item */
+}
+
+.grid-item {
+  display: flex;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+}
+
+.product-image {
+  max-width: 100px;
+  height: 150px;
+  object-fit: cover;
+}
+
+button{
+    background-color: rgb(239, 201, 94);
+    color: white;
+    width: 80px;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+.content{
+    text-align: center;
+margin-left: 10px;
+}
+.totalPrice{
+
+}
+
+a{
+    text-decoration: none;
+    font-weight: 550;
+}

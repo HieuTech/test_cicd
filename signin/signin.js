@@ -1,11 +1,14 @@
-import { signInWithGoogle } from "../firebase.js";
+import { signInWithGoogle, uploadFileToFireBaseStorage} from "../firebase.js";
+
 if (checkLogin()) {
   window.location.href = "/";
 }
+
 document
   .getElementById("signInWithGoogle")
   .addEventListener("click", async () => {
     try {
+
       let result = await signInWithGoogle();
       console.log(result);
 
@@ -19,19 +22,21 @@ document
           email: result.user.email,
           password: hashPassword("EFDMWDMMWS"),
           avatar: result.user.photoURL,
+          cart:[]
         };
 
         users = [...users, userLogin];
         localStorage.setItem("users", JSON.stringify(users));
-
+        console.log(userLogin);
         let token = createToken(userLogin);
         localStorage.setItem("token", token);
         window.location.href = "/";
       }
-
-      let token = createToken(checkUser);
-      localStorage.setItem("token", token);
-      window.location.href = "/";
+      else{
+        let token = createToken(checkUser);
+        localStorage.setItem("token", token);
+        window.location.href = "/";
+      }
       //register+login
       //login
     } catch (error) {
@@ -39,8 +44,17 @@ document
     }
   });
 
-document.getElementById("signIn").addEventListener("submit", (e) => {
+document.getElementById("signIn").addEventListener("submit", async(e) => {
+  e.preventDefault();
 
+  //   let data = {
+  //     email: e.target.email.value,
+  //     password: e.target.password.value,
+  //     avatar: await   uploadFileToFireBaseStorage(e.target.file.files[0])
+
+  //   }
+  // console.log(data);
+  //   return
   signIn(e);
 });
 
@@ -61,6 +75,7 @@ function signIn(e) {
     (user) => user.email == email && user.password == password
   );
   console.log(user);
+  
   if (!user) {
     alert("email or password ko dung");
     return;
@@ -69,6 +84,7 @@ function signIn(e) {
   let userLogin = {
     email,
     password,
+    avatar: user.avatar
   };
 
   let token = createToken(userLogin);

@@ -22,8 +22,6 @@ let studentListBase = [
 if(!localStorage.getItem("students")){localStorage.setItem("students", JSON.stringify(studentListBase));}
 
 
-//get
-
 function printData(students){
     let studentManagerTable = document.querySelector(".studentManagerList");
     if(!studentManagerTable) return

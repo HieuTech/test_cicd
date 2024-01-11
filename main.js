@@ -1,10 +1,11 @@
+// import { uploadFileToFireBaseStorage } from "../firebase.js";
 
 function renderHeader(userLogin = null) {
   return `
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">Cake Shop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -17,19 +18,28 @@ function renderHeader(userLogin = null) {
                             <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/category">Category</a>
+                            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/admin">Admin Page</a>
                         </li>
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">About</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">Contact Us</a>
+                        </li>
+                            <input class="form-control me-2 search_infor" type="search" placeholder="Search" aria-label="Search">
+                            <button onclick="search()" class="btn btn-outline-success">Search</button>
+
                 </div>
                 
                 ${
                   userLogin
                     ? ` ${userLogin.email}  
-                    <img src="${userLogin.avatar}">
- <i class="fa-solid  fa-cart-shopping"></i>
+                      <form class="user-info" id="formAvatar">
+      <img src="${userLogin.avatar}" class="img-avatar" onclick="changeAvatar()" id="img-avatar">
+      <input type="file" class="input-file" id="input-file">
+    </form>
+  <a href="./cart/"> <i class="fa-solid fa-cart-shopping"></i></a>
+                <span class="quantity">  </span>
 
    <button onclick="logout()" class="btn btn-primary">Log out</button>`
                     : ` <a href="/signin"><button class="btn btn-primary">Sign In</button></a>
@@ -44,8 +54,6 @@ function renderHeader(userLogin = null) {
     </header>
     `;
 }
-
-
 
 function renderFooter() {
   return `
@@ -145,11 +153,43 @@ function renderFooter() {
     `;
 }
 
+function renderProduct(products) {
+  localStorage.setItem("products", JSON.stringify(products));
+  return (products = products
+    .map((product) => {
+      return `
+     <div class="grid-item">
+        <img src="${product.productImage}"  class="product-image">
+        <h3 class="product-name">${product.productName}</h3>
+        <p class="product-price">${product.productPrice}</p>
+        <button class="buy-now" onclick="buyNow(${product.productId})">Buy Now</button>
+        <button class="add-to-cart" onclick="addToCart(${product.productId})">Add to Cart</button>
+    </div>
+  `;
+    })
+    .join(""));
+}
+// function renderProduct(products) {
+//   localStorage.setItem("products", JSON.stringify(products));
+
+//   let tableDataString = ``;
+//   for (let i in products) {
+//     tableDataString += `
+//                     <p>${products[i].productName}</p>
+//                     <p>${products[i].productPrice}</p>
+//                     <img src="${products[i].productImage}"  class="product-image">
+//            `;
+//   }
+
+//   console.log(tableDataString);
+
+//   return tableDataString;
+// }
+
 function createToken(userLogin) {
   let dataJsonStr = JSON.stringify({
     userLogin,
     privateKey: "HieuJava",
-    
   });
   let hashStr = ``;
   for (let i in dataJsonStr) {
@@ -172,7 +212,6 @@ function decodeToken(token) {
 }
 
 function checkLogin() {
-  //neu co token thi ma hoa no
   if (localStorage.getItem("token")) {
     let tokenData = decodeToken(localStorage.getItem("token"));
     if (tokenData.privateKey != "HieuJava") {
@@ -199,4 +238,44 @@ function hashPassword(str) {
 function logout() {
   localStorage.removeItem("token");
   window.location.reload();
+}
+
+function changeAvatar() {
+  let image = document.getElementById("input-file").files;
+  console.log(image);
+  return;
+}
+
+function search() {
+  let products = JSON.parse(localStorage.getItem("products"));
+  let searchInforEl = document.querySelector(".search_infor");
+
+  if (searchInforEl.value == "") {
+    renderProduct(products);
+    return;
+  } else {
+    let result = [];
+    for (let i in products) {
+      if (
+        format(products[i].productName).includes(format(searchInforEl.value))
+      ) {
+        result.push(products[i]);
+      }
+    }
+document.querySelector(".grid-container").innerHTML = renderProduct(result);
+  }
+}
+
+function format(str) {
+  str = str.toLowerCase();
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+  str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+  str = str.replace(/đ/g, "d");
+  str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); // Huyền sắc hỏi ngã nặng
+  str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Â, Ê, Ă, Ơ, Ư
+  return str;
 }

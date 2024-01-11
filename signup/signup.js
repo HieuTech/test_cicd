@@ -54,7 +54,9 @@ if (!email || !password) {
   let newUser = {
     id: "" + Math.ceil(Date.now() * Math.random()),
     email,
-    password: hashPassword(password)
+    password: hashPassword(password),
+    avatar: "   https://cdn-icons-png.flaticon.com/512/1154/1154448.png ",
+    cart:[]
   };
 
   let user = users.find((user) => user.email == email);
