@@ -11,3 +11,5 @@
 -Ở trang checkout, validate fields name, phone, address. Khi submit sẽ lưu lại các thông tin Order và xoá trạng thái giỏ hàng của User đó. 
 
 
+Quan li giỏ hàng.
+Quản lí user.

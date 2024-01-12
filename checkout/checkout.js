@@ -27,7 +27,12 @@ function renderInfo(){
 function submitForm(e) {
     e.preventDefault();
         let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+let thoiGianHienTai = new Date();
+let ngay = thoiGianHienTai.getDate();
+let thang = thoiGianHienTai.getMonth() + 1; 
+let nam = thoiGianHienTai.getFullYear();
 
+console.log("Ngày tháng năm hiện tại là: " + ngay + "/" + thang + "/" + nam);
   let name = e.target.name.value;
   let address = e.target.address.value;
   let phone = e.target.phone.value;
@@ -51,15 +56,16 @@ function submitForm(e) {
     return false;
   }
 
-  let order =
-    {
+  let order = {
     orderId: Math.ceil(Math.random() * Date.now()),
     name,
     phone,
     address,
     note,
-    payment
-  }
+    payment,
+    createAt:  `${ngay} + "/" + ${thang} + "/" + ${nam}`,
+    status: true
+  };
   orders = [...orders, order]
   localStorage.setItem("orders", JSON.stringify(orders));
 

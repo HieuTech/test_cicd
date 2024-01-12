@@ -18,7 +18,7 @@ function renderHeader(userLogin = null) {
                             <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/admin">Admin Page</a>
+                            <a class="nav-link active adminPage" aria-current="page" href="http://127.0.0.1:5500/admin">Admin Page</a>
                         </li>
                          <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">About</a>
@@ -40,7 +40,7 @@ function renderHeader(userLogin = null) {
     </form>
   <a href="./cart/"> <i class="fa-solid fa-cart-shopping"></i></a>
                 <span class="quantity">  </span>
-
+                  <a href="../ClientOrderPage" class="clientPage">Your Orders</a>
    <button onclick="logout()" class="btn btn-primary">Log out</button>`
                     : ` <a href="/signin"><button class="btn btn-primary">Sign In</button></a>
 
@@ -153,8 +153,10 @@ function renderFooter() {
     `;
 }
 
-function renderProduct(products) {
-  localStorage.setItem("products", JSON.stringify(products));
+function renderProduct() {
+  // localStorage.setItem("products", JSON.stringify(products));
+  let products = JSON.parse(localStorage.getItem("products"))
+  
   return (products = products
     .map((product) => {
       return `

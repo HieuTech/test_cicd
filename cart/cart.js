@@ -12,15 +12,16 @@ function buyNow(productId) {
 }
 
 function addToCart(productId) {
+
   let products = JSON.parse(localStorage.getItem("products") || "[]");
   let product = products.find((product) => product.productId == productId);
   let users = JSON.parse(localStorage.getItem("users") || "[]");
   let tokenData = decodeToken(localStorage.getItem("token"));
 
   users.forEach((user) => {
-    if (user.email == tokenData.userLogin.email) {
+    if (user.email == tokenData.userLogin.email ) {
       user.cart.push(product);
-      
+
     }
   });
   localStorage.setItem("users", JSON.stringify(users));
@@ -58,11 +59,9 @@ function showProduct() {
   users.forEach((user) => {
     if (user.email == tokenData.userLogin.email) {
       user.cart.forEach((cart) => {
-
         totalPrice += parseInt(
           cart.productPrice.replace(" VND", "").replace(".", "")
         );
-        // totalPrice += cart.productPrice;
         document.querySelector(
           ".totalPrice"
         ).innerHTML = `TotalPrice:  ${totalPrice} VND`;
@@ -70,12 +69,17 @@ function showProduct() {
         document.querySelector(
           ".quantity"
         ).innerHTML = `Quantity:  ${quantity} Unit`;
+
+
       });
+
       document.getElementById("list").innerHTML = renderCart(user.cart);
     }
   });
 }
 showProduct();
+
+
 
 function decrease(id) {
     if (!confirm("Do You Want To Delete It?")) return;
@@ -92,6 +96,7 @@ function decrease(id) {
 
     }
 });
+
 localStorage.setItem("users", JSON.stringify(users));
 
 Toastify({

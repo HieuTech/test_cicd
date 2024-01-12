@@ -1,71 +1,42 @@
-
-.container{
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-            background-color: #f4e4e4;
-
+.product_container {
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4e4e4;
 }
-        #form-admin {
-            
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 300px;
-            margin: 20px;
-        }
 
-        #form-admin div {
-            margin-bottom: 10px;
-        }
+.btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 5px #999;
+}
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
+.btn:hover {
+  background-color: #45a049;
+}
 
-        input[type="text"],
-        input[type="number"]{
-            width: 100%;
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            box-sizing: border-box;
-        }
+.btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+.btn-delete {
+  background-color: red;
+}
+.btn-update {
+  background-color: blue;
+}
+h2 {
+  color: rgb(78, 218, 164);
+}
 
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 5px #999;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-
-        .btn:active {
-            background-color: #3e8e41;
-            box-shadow: 0 2px #666;
-            transform: translateY(4px);
-        }
-        .btn-delete{
-            background-color: red;
-        }
-        .btn-update{
-            background-color: blue;
-        }
-        h2{
-            color:rgb(78, 218, 164)
-        }
-
-        /* Example CSS styles */
+/* Example CSS styles */
 .product-row {
   background-color: #f0f0f0;
 }
@@ -90,3 +61,58 @@
 }
 
 /* Add more CSS styles as needed */
+
+.sidebar {
+   width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0; /* Start with the sidebar hidden */
+    height: 100%;
+    background-color: #333;
+    transition: left 0.3s;
+    opacity: 0.8;
+}
+
+/* Định dạng các liên kết trong sidebar */
+.sidebar a {
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  color: #fff;
+  display: block;
+}
+
+/* Định dạng khi di chuột qua các liên kết */
+.sidebar a:hover {
+  background-color: #555;
+}
+
+.btnToggleSidebar{
+    background-color: red;
+    position: absolute;
+    color:rgb(157, 175, 169);
+    left: -37px;
+    top:400px;
+    font-size:30px
+    
+}
+.main-content, .btnToggleSidebar {
+   border: none;
+    background-color: transparent;
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+}
+.title{
+    text-align: center;
+    color: rgb(175, 112, 227)
+}
+.product_container, .user_container{
+    display: none;
+}
+
+.renderOrderAdmin{
+
+}
+
+
