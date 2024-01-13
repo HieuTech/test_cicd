@@ -233,7 +233,7 @@ function checkOrder(e, orderId) {
           }
         });
         localStorage.setItem("users", JSON.stringify(users));
-      }
+      } 
     }
   });
 }

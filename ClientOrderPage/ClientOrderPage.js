@@ -1,13 +1,14 @@
 function renderOrderClient() {
   let users = JSON.parse(localStorage.getItem("users"));
   let showTableData = ``;
+  let tokenData = decodeToken(localStorage.getItem("token"));
 
   users.forEach((user) => {
-    for (let i in user.orders) {
-      console.log(user.orders);
-      // return
-
-      showTableData += `
+    if (user.email == tokenData.userLogin.email) {
+        // console.log(user.orders);
+        // return
+      for (let i in user.orders) {
+        showTableData += `
         <tr class="product-row">
       <td class="product-name">${user.orders[i].name}</td>
   <td class="product-name">${user.orders[i].phone}</td>
@@ -17,25 +18,24 @@ function renderOrderClient() {
   <td class="product-quantity">${user.orders[i].note} </td>
   <td class="status">Pending...</td>
 </tr>`;
-        
+      }
     }
   });
-    
+
   document.getElementById("tableOrder").innerHTML = showTableData;
 }
 renderOrderClient();
 
+// function renderOrderStatus() {
+//   let orders = JSON.parse(localStorage.getItem("orders"));
 
-function renderOrderStatus(){
-    let orders = JSON.parse(localStorage.getItem("orders"));
-
-    orders.forEach((order) => {
-      let statusElement = document.querySelector(".status");
-      if (order.status) {
-        statusElement.innerHTML = ` Checked`;
-      } else {
-        statusElement.innerHTML = "Disapproved!";
-      }
-    });
-}
-renderOrderStatus();
+//   orders.forEach((order) => {
+//     let statusElement = document.querySelector(".status");
+//     if (order.status) {
+//       statusElement.innerHTML = ` Checked`;
+//     } else {
+//       statusElement.innerHTML = "Disapproved!";
+//     }
+//   });
+// }
+// renderOrderStatus();

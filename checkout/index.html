@@ -4,24 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.css"
+    />
     <link rel="stylesheet" href="./checkout.css" />
-
   </head>
   <body>
-    <form onsubmit="submitForm(event)" >
+    <form onsubmit="submitForm(event)">
       <div class="info">
         <h3>Order Summary</h3>
-        <p><span id="total-products">3</span></p>
-        <p> <span id="total-price">$150</span></p>
+        <p id="total-products"></p>
+        <p id="total-price"></p>
       </div>
       Name:
-      <input type="text" name="name"/>
+      <input type="text" name="name" />
       Phone:
-      <input type="text" name="phone"/>
+      <input type="text" name="phone" />
 
       Address:
-      <input type="text" name="address"/>
+      <input type="text" name="address" />
 
       Notes:
       <textarea name="notes" rows="4" cols="50"></textarea>
@@ -30,8 +32,7 @@
       <input type="radio" name="paymentMethod" value="Credit Card" checked />
       Credit Card<br />
       <input type="radio" name="paymentMethod" value="PayPal" /> PayPal<br />
-      <input type="radio" name="paymentMethod" value="COD" /> Cash on
-      Delivery
+      <input type="radio" name="paymentMethod" value="COD" /> Cash on Delivery
       <div>
         <button class="btn" type="submit">Submit</button>
       </div>
@@ -40,6 +41,7 @@
 
     <script src="../main.js"></script>
     <script src="../home.js"></script>
+
     <script src="./checkout.js"></script>
   </body>
 </html>

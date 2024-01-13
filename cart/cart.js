@@ -73,43 +73,15 @@ function showProduct() {
       document.getElementById("list").innerHTML = renderCart(user.cart);
     }
   });
+
+
+
+
 }
 showProduct();
 
 //-------------------------------RemoveItem-------------------------
-// function decrease(id) {
-//   let users = JSON.parse(localStorage.getItem("users") || "[]");
-//   let tokenData = decodeToken(localStorage.getItem("token"));
 
-//   users.forEach((user) => {
-//     if (user.email == tokenData.userLogin.email) {
-//       user.cart.forEach((cart) => {
-//         if (cart.productId === id) {
-//           cart.quantity -= 1;
-//           if (cart.quantity <= 0) {
-//             user.cart = user.cart.filter((item) => item.productId !== id);
-//           }
-//           let totalPrice = 0;
-//           let itemPrice = parseInt(
-//             cart.productPrice.replace(" VND", "").replace(".", "")
-//           );
-//           totalPrice += itemPrice * cart.quantity;
-
-//           document.querySelector(
-//             ".totalPrice"
-//           ).innerHTML = `TotalPrice:  ${totalPrice} VND`;
-//           quantity = quantity - 1;
-//           document.querySelector(
-//             ".quantity"
-//           ).innerHTML = `Quantity:  ${quantity} Unit`;
-//         }
-//       });
-//       document.getElementById("list").innerHTML = renderCart(user.cart);
-//     }
-//   });
-
-//   localStorage.setItem("users", JSON.stringify(users));
-// }
 function decrease(id) {
   let users = JSON.parse(localStorage.getItem("users") || "[]");
   let tokenData = decodeToken(localStorage.getItem("token"));

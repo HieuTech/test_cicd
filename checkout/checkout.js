@@ -4,13 +4,20 @@ let quantity = 0;
 function renderInfo(){
  let users = JSON.parse(localStorage.getItem("users") || "[]");
  let tokenData = decodeToken(localStorage.getItem("token"));
+
  users.forEach((user) => {
    if (user.email == tokenData.userLogin.email) {
+     console.log(user.email);
+     
+     if(user.cart.length === 0){
+        alert("Cart is empty, Continious to shop?");
+        window.location.href = "/"
+        return
+     }
      user.cart.forEach((cart) => {
-         totalPrice += parseInt(
-           cart.productPrice.replace(" VND", "").replace(".", "")
-         );
-
+       totalPrice +=
+         parseInt(cart.productPrice.replace(" VND", "").replace(".", "")) *
+         cart.quantity;
        document.querySelector(
          "#total-price"
        ).innerHTML = `TotalPrice:  ${totalPrice} VND`;
@@ -19,6 +26,7 @@ function renderInfo(){
          "#total-products"
        ).innerHTML = `Quantity:  ${quantity} Unit`;
      });
+
    }
  });
 }
@@ -90,6 +98,6 @@ notify("Đặt hàng thành công");
   }, 3000);
 }
 
+renderInfo()
 
 
-renderInfo();
