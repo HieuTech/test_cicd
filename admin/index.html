@@ -17,10 +17,10 @@
     <div class="sidebar">
       <a>ADMIN</a>
       <a href="/">HomePage</a>
-      <a href="#" id="dashboard" onclick="clickDashboard('dashboard')">Dashboard</a>
-      <a href="#" id="user" onclick="clickUser('user')">User</a>
-      <a href="#" id="order" onclick="clickOrder('order')">Order</a>
-      <a href="#" id="product" onclick="clickProduct('product')">Product</a>
+      <a href="#" id="dashboard" onclick="clickRender('dashboard')">Dashboard</a>
+      <a href="#" id="user" onclick="clickRender('user')">User</a>
+      <a href="#" id="order" onclick="clickRender('order')">Order</a>
+      <a href="#" id="product" onclick="clickRender('product')">Product</a>
     </div>
     <button class="btnToggleSidebar" onclick="toggleSidebar()">
       <i class="fa-solid fa-arrow-left"></i>
@@ -31,19 +31,16 @@
       <div class="dashboard_container">WELCOME TO DASHBOARD</div>
       <div class="product_container">
         <h1 class="title">WELCOME TO PRODUCT PAGE</h1>
-
         <div class="table">
           <table border="1">
             <thead>
               <tr>
                 <th>Product Id</th>
-
                 <th>Product Image</th>
                 <th>Product Name</th>
                 <th>Product Price</th>
                 <th>Quantity</th>
                 <th>Add Product</th>
-
                 <th>Update Product</th>
                 <th>Delete Product</th>
               </tr>
@@ -65,8 +62,8 @@
                 <th>Create At</th>
                 <th>Payment</th>
                 <th>Notes</th>
-                <th>Check Status</th>
                 <th>Status</th>
+
               </tr>
             </thead>
             <tbody id="tableOrder"></tbody>
@@ -92,7 +89,7 @@
         </div>
       </div>
       <div class="orderDetail_container">
-        <h1 class="title">WELCOME TO ORDER PAGE</h1>
+        <h1 class="title">USERS'ORDERS PAGE</h1>
         <div class="table">
           <table border="1">
             <thead>
@@ -108,7 +105,11 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody id="tableOrder"></tbody>
+            <tbody id="tableOrderDetail">
+
+
+                
+            </tbody>
           </table>
         </div>
       </div>

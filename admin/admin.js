@@ -64,6 +64,19 @@ let products = [
       "https://images.unsplash.com/photo-1541491008689-b5d3c6615e2e?q=80&w=1485&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
 ];
+//-------------------CHECKADMINACCOUNT------------------------
+
+function renderDashBoard() {
+  let users = JSON.parse(localStorage.getItem("users"));
+  let tokenData = decodeToken(localStorage.getItem("token"));
+  users.forEach((user) => {
+    if (tokenData.userLogin.email != "admin@gmail.com") {
+      window.location.href = "/";
+    }
+  });
+}
+renderDashBoard();
+
 if (!localStorage.getItem("products")) {
   localStorage.setItem("products", JSON.stringify(products));
 }
@@ -169,13 +182,7 @@ function renderOrderAdmin() {
   <td class="product-quantity">${orders[i].note} </td>
   <td class="order-status">${orders[i].status} </td>
   <td class="product-quantity">
-  <form onsubmit="checkOrder(event,${orders[i].orderId})">
-  <input type="radio" id="Approved" name="orderStatus" value="Approved">
-  <label for="Approved">Approved</label><br>
-  <input type="radio" id="Disapproved" name="orderStatus" value="Disapproved">
-  <label for="Disapproved">Disapproved</label>
-<button type="submit" >Confirm</button>
-</form>
+ 
   </td>
   
 </tr>`;
@@ -235,6 +242,7 @@ function checkOrder(e, orderId) {
 function renderUserAdmin() {
   let users = JSON.parse(localStorage.getItem("users"));
   let showTableData = ``;
+
   for (let i in users) {
     showTableData += `
         <tr class="product-row">
@@ -255,10 +263,40 @@ function renderUserAdmin() {
 
 // --------------------------------------------CHECK_USERS_ORDERS------------------------------
 function detailOrder(id) {
-  document.querySelector(".order_container").style.display = "none";
-  document.querySelector(".product_container").style.display = "none";
-  document.querySelector(".user_container").style.display = "none";
-  document.querySelector(".orderDetail_container").style.display = "block";
+  clickRender("orderDetail");
+  let users = JSON.parse(localStorage.getItem("users"));
+  let showTableData = ``;
+  let checkUser = users.find((user) => user.id == id);
+
+  if (checkUser) {
+    for (let i in checkUser.orders) {
+      showTableData += `
+        <tr class="product-row">
+          <td class="product-id">${checkUser.orders[i].orderId}</td>
+
+      <td class="product-name">${checkUser.orders[i].name}</td>
+
+  <td class="product-name">${checkUser.orders[i].phone}</td>
+  <td class="product-price">${checkUser.orders[i].address}</td>
+  <td class="product-quantity">${checkUser.orders[i].createAt} </td>
+  <td class="product-quantity">${checkUser.orders[i].payment} </td>
+  <td class="product-quantity">${checkUser.orders[i].note} </td>
+  <td class="order-status">${checkUser.orders[i].status} </td>
+  <td class="product-quantity">
+  <form onsubmit="checkOrder(event,${checkUser.orders[i].orderId})">
+  <input type="radio" id="Approved" name="orderStatus" value="Approved">
+  <label for="Approved">Approved</label><br>
+  <input type="radio" id="Disapproved" name="orderStatus" value="Disapproved">
+  <label for="Disapproved">Disapproved</label>
+<button type="submit" >Confirm</button>
+</form>
+  </td>
+  
+</tr>`;
+    }
+
+    document.getElementById("tableOrderDetail").innerHTML = showTableData;
+  }
 }
 
 // --------------------------------------------DELETEUSER------------------------------
@@ -277,55 +315,74 @@ function deleteUser(id) {
 }
 
 // --------------------------------------------RENDERPAGE------------------------------
-function clickOrder(order) {
-  renderOrderAdmin();
-  document.querySelector(".order_container").style.display = "block";
-  document.querySelector(".product_container").style.display = "none";
-  document.querySelector(".user_container").style.display = "none";
-}
-function clickProduct(product) {
-  renderProductAdmin(JSON.parse(localStorage.getItem("products")));
-  document.querySelector(".product_container").style.display = "block";
 
-  document.querySelector(".order_container").style.display = "none";
-  document.querySelector(".user_container").style.display = "none";
-}
-function clickUser() {
-  renderUserAdmin();
+// function showContainer(value){
+//     let containers = [
+//       ".dashboard_container",
+//       ".user_container",
+//       ".order_container",
+//       ".product_container",
+//       ".orderDetailt_container",
+//     ];
 
-  document.querySelector(".user_container").style.display = "block";
-  document.querySelector(".product_container").style.display = "none";
-  document.querySelector(".order_container").style.display = "none";
-}
-function clickDashboard(dashboard) {
-  //   clickRender(
-  //     dashboard,
-  //     ".user_container",
-  //     ".product_container",
-  //     "order_container",
-  //     "block",
-  //   );
-}
+//     containers.forEach(container=>{
+//         if(container == value){
 
-function clickRender(dashboard, user, order, product) {
-  let arrayRender = [dashboard, user, order, product];
-  arrayRender.forEach((item) => {
-    console.log(item);
-  });
-  return;
+//         }
+//     })
+// }
 
-  if (dashboard == ".dashboard_container") {
-    document.querySelector(dashboard).style.display = "block";
-  } else {
-    document.querySelector(user).style.display = "none";
-    document.querySelector(order).style.display = "none";
-    document.querySelector(product).style.display = "none";
+function clickRender(valueId) {
+  switch (valueId) {
+    case "dashboard":
+      document.querySelector(".dashboard_container").style.display = "block";
+      document.querySelector(".user_container").style.display = "none";
+      document.querySelector(".order_container").style.display = "none";
+      document.querySelector(".product_container").style.display = "none";
+      document.querySelector(".orderDetail_container").style.display = "none";
+      break;
+
+    case "user":
+      renderUserAdmin();
+
+      document.querySelector(".dashboard_container").style.display = "none";
+      document.querySelector(".user_container").style.display = "block";
+      document.querySelector(".order_container").style.display = "none";
+      document.querySelector(".product_container").style.display = "none";
+      document.querySelector(".orderDetail_container").style.display = "none";
+      break;
+
+    case "order":
+      renderOrderAdmin();
+
+      document.querySelector(".dashboard_container").style.display = "none";
+      document.querySelector(".user_container").style.display = "none";
+      document.querySelector(".order_container").style.display = "block";
+      document.querySelector(".product_container").style.display = "none";
+      document.querySelector(".orderDetail_container").style.display = "none";
+
+      break;
+
+    case "product":
+      renderProductAdmin(JSON.parse(localStorage.getItem("products")));
+      document.querySelector(".dashboard_container").style.display = "none";
+      document.querySelector(".user_container").style.display = "none";
+      document.querySelector(".order_container").style.display = "none";
+      document.querySelector(".product_container").style.display = "block";
+      document.querySelector(".orderDetail_container").style.display = "none";
+      break;
+    case "orderDetail":
+      renderProductAdmin(JSON.parse(localStorage.getItem("products")));
+      document.querySelector(".dashboard_container").style.display = "none";
+      document.querySelector(".user_container").style.display = "none";
+      document.querySelector(".order_container").style.display = "none";
+      document.querySelector(".product_container").style.display = "none";
+      document.querySelector(".orderDetail_container").style.display = "block";
+      break;
+
+    default:
+      break;
   }
-
-  document.querySelector(dashboard).style.display = "block";
-  document.querySelector(user).style.display = "none";
-  document.querySelector(order).style.display = "none";
-  document.querySelector(product).style.display = "none";
 }
 
 // ------------------------TOGGLESIDEBAR_------------------------------------

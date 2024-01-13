@@ -6,6 +6,65 @@
   background-color: #f4e4e4;
 }
 
+
+
+
+.title {
+  text-align: center;
+  color: #3498db; /* Màu của tiêu đề */
+}
+
+.table {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #2ecc71; /* Màu của phần đầu bảng */
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #ecf0f1; /* Màu nền của các hàng chẵn */
+}
+
+tr:nth-child(odd) {
+  background-color: #f8f9fa; /* Màu nền của các hàng lẻ */
+}
+
+/* Các loại màu cho cột "Status" */
+.check-status {
+  color: #27ae60;
+}
+
+.status-approved {
+  color: #2ecc71;
+}
+
+.status-disapproved {
+  color: #e74c3c;
+}
+
+.status-pending {
+  color: #f39c12;
+}
+
+.status-shipped {
+  color: #3498db;
+}
+
+
 .btn {
   background-color: #4caf50;
   color: white;
@@ -107,8 +166,9 @@ h2 {
     text-align: center;
     color: rgb(175, 112, 227)
 }
-.order_container, .user_container,.orderDetail_container{
+.order_container, .user_container,.orderDetail_container,.product_container{
     display: none;
 }
 
+/*  */
 
