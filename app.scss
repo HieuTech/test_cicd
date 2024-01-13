@@ -1,7 +1,30 @@
 $navH: 56px;
 $footerH: 420px;
+
+
+@keyframes changeColor {
+    0% {
+        background-color: #ddd5a0db; /* Màu đỏ */
+    }
+    25% {
+        background-color: #00ff00; /* Màu xanh lá cây */
+    }
+    50% {
+        background-color: #00ffee; /* Màu xanh dương */
+    }
+    75% {
+        background-color: #ffff00; /* Màu vàng */
+    }
+    100% {
+        background-color: #ff00ff; /* Màu tím */
+    }
+}
 #root {
   background-color: rgb(226, 223, 223);
+   width: 100%;
+    height: 100%;
+    position: absolute;
+
   header {
     position: sticky;
     top: 0;
@@ -23,6 +46,13 @@ $footerH: 420px;
 }
 
 .grid-container {
+
+       animation: changeGradient 5s linear infinite;
+    background-size: 200% 200%; /* Kích thước lớn hơn để tạo hiệu ứng gradient */
+    background-image: linear-gradient(45deg, #ff6b6b, #ffa07a, #ffd700, #90ee90, #87ceeb, #c0c0c0, #dda0dd);
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+
   display: grid;
   padding: 50px 200px;
   grid-template-columns: repeat(4, 1fr); /* Tạo 4 cột */
@@ -30,14 +60,14 @@ $footerH: 420px;
 }
 
 .grid-item {
-  border: none;
+
   padding: 10px;
   text-align: center;
   transition: background-color 0.5s, transform 0.5s; /* Thêm transition cho background-color và transform */
 
   &:hover {
     background-color: rgb(223, 241, 223);
-
+    border-radius: 10px;
     transform: scale(1.1); /* Phóng to nút khi di chuột vào */
   }
 }
@@ -124,3 +154,6 @@ $footerH: 420px;
     color: black;
     margin: 10px;
 }
+// .adminPage{
+//     display: none;
+// }

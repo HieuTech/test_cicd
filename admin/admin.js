@@ -153,7 +153,7 @@ function deleteProduct(id) {
 
 function renderOrderAdmin() {
   let orders = JSON.parse(localStorage.getItem("orders"));
-  console.log(orders);
+
   let showTableData = ``;
   for (let i in orders) {
     showTableData += `
@@ -167,12 +167,14 @@ function renderOrderAdmin() {
   <td class="product-quantity">${orders[i].createAt} </td>
   <td class="product-quantity">${orders[i].payment} </td>
   <td class="product-quantity">${orders[i].note} </td>
+  <td class="order-status">${orders[i].status} </td>
   <td class="product-quantity">
-  <form onsubmit="checkOrder(event)">
+  <form onsubmit="checkOrder(event,${orders[i].orderId})">
   <input type="radio" id="Approved" name="orderStatus" value="Approved">
   <label for="Approved">Approved</label><br>
   <input type="radio" id="Disapproved" name="orderStatus" value="Disapproved">
   <label for="Disapproved">Disapproved</label>
+<button type="submit" >Confirm</button>
 </form>
   </td>
   
@@ -182,17 +184,106 @@ function renderOrderAdmin() {
   document.getElementById("tableOrder").innerHTML = showTableData;
 }
 
+function checkOrder(e, orderId) {
+  e.preventDefault();
+  let users = JSON.parse(localStorage.getItem("users") || "[]");
+  let orders = JSON.parse(localStorage.getItem("orders"));
+  let tokenData = decodeToken(localStorage.getItem("token"));
 
+  let selectedValue = document.querySelector(
+    'input[name="orderStatus"]:checked'
+  ).value;
 
+  orders.forEach((order) => {
+    if (order.orderId == orderId) {
+      if (selectedValue == "Approved") {
+        orders.forEach((order) => {
+          order.status = true;
+          document.querySelector(".order-status").innerHTML = order.status;
+        });
+        localStorage.setItem("orders", JSON.stringify(orders));
+
+        users.forEach((user) => {
+          if (user.email == tokenData.userLogin.email) {
+            user.orders.forEach((order) => {
+              order.status = true;
+            });
+          }
+        });
+        localStorage.setItem("users", JSON.stringify(users));
+      } else {
+        orders.forEach((order) => {
+          order.status = false;
+          document.querySelector(".order-status").innerHTML = order.status;
+        });
+        localStorage.setItem("orders", JSON.stringify(orders));
+        users.forEach((user) => {
+          if (user.email == tokenData.userLogin.email) {
+            user.orders.forEach((order) => {
+              order.status = true;
+            });
+          }
+        });
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    }
+  });
+}
+
+// --------------------------------------------USERS------------------------------
+
+function renderUserAdmin() {
+  let users = JSON.parse(localStorage.getItem("users"));
+  let showTableData = ``;
+  for (let i in users) {
+    showTableData += `
+        <tr class="product-row">
+          <td class="product-id">${users[i].id}</td>
+
+      <td class="product-name">${users[i].email}</td>
+
+  <td class="product-name">${users[i].password}</td>
+  <td class="product-price"><button onclick=detailOrder(${users[i].id})>Detail Order</button></td>
+  <td class="product-price" >
+  <button onclick=deleteUser(${users[i].id})>Delete User</button></td>
+  
+</tr>`;
+  }
+
+  document.getElementById("tableUser").innerHTML = showTableData;
+}
+
+// --------------------------------------------CHECK_USERS_ORDERS------------------------------
+function detailOrder(id) {
+  document.querySelector(".order_container").style.display = "none";
+  document.querySelector(".product_container").style.display = "none";
+  document.querySelector(".user_container").style.display = "none";
+  document.querySelector(".orderDetail_container").style.display = "block";
+}
+
+// --------------------------------------------DELETEUSER------------------------------
+
+function deleteUser(id) {
+  if (
+    !confirm("!!!!IF YOU DELETE USER, ALL OF DATAS OF THEM WILL BE LOST!!!!!!")
+  )
+    return;
+  let users = JSON.parse(localStorage.getItem("users"));
+
+  users = users.filter((user) => user.id != id);
+  localStorage.setItem("users", JSON.stringify(users));
+
+  renderUserAdmin();
+}
 
 // --------------------------------------------RENDERPAGE------------------------------
-function clickOrder() {
+function clickOrder(order) {
   renderOrderAdmin();
   document.querySelector(".order_container").style.display = "block";
   document.querySelector(".product_container").style.display = "none";
   document.querySelector(".user_container").style.display = "none";
 }
-function clickProduct() {
+function clickProduct(product) {
   renderProductAdmin(JSON.parse(localStorage.getItem("products")));
   document.querySelector(".product_container").style.display = "block";
 
@@ -200,12 +291,42 @@ function clickProduct() {
   document.querySelector(".user_container").style.display = "none";
 }
 function clickUser() {
-  document.querySelector(".user_container").style.display = "block";
+  renderUserAdmin();
 
+  document.querySelector(".user_container").style.display = "block";
   document.querySelector(".product_container").style.display = "none";
   document.querySelector(".order_container").style.display = "none";
 }
+function clickDashboard(dashboard) {
+  //   clickRender(
+  //     dashboard,
+  //     ".user_container",
+  //     ".product_container",
+  //     "order_container",
+  //     "block",
+  //   );
+}
 
+function clickRender(dashboard, user, order, product) {
+  let arrayRender = [dashboard, user, order, product];
+  arrayRender.forEach((item) => {
+    console.log(item);
+  });
+  return;
+
+  if (dashboard == ".dashboard_container") {
+    document.querySelector(dashboard).style.display = "block";
+  } else {
+    document.querySelector(user).style.display = "none";
+    document.querySelector(order).style.display = "none";
+    document.querySelector(product).style.display = "none";
+  }
+
+  document.querySelector(dashboard).style.display = "block";
+  document.querySelector(user).style.display = "none";
+  document.querySelector(order).style.display = "none";
+  document.querySelector(product).style.display = "none";
+}
 
 // ------------------------TOGGLESIDEBAR_------------------------------------
 function toggleSidebar() {
@@ -227,4 +348,3 @@ function toggleSidebar() {
 }
 
 // ------------------------IFADMINACCOUNT------------------------------------
-

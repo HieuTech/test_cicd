@@ -107,12 +107,8 @@ h2 {
     text-align: center;
     color: rgb(175, 112, 227)
 }
-.product_container, .user_container{
+.order_container, .user_container,.orderDetail_container{
     display: none;
-}
-
-.renderOrderAdmin{
-
 }
 
 

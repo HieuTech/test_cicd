@@ -4,28 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./admin.css" />
   </head>
   <body>
     <div class="sidebar">
       <a>ADMIN</a>
       <a href="/">HomePage</a>
-      <a href="#" id="user" onclick="clickUser()">User</a>
-      <a href="#" id="order" onclick="clickOrder()">Order</a>
-      <a href="#" id="aroduct" onclick="clickProduct()">Product</a>
-
-        
-
+      <a href="#" id="dashboard" onclick="clickDashboard('dashboard')">Dashboard</a>
+      <a href="#" id="user" onclick="clickUser('user')">User</a>
+      <a href="#" id="order" onclick="clickOrder('order')">Order</a>
+      <a href="#" id="product" onclick="clickProduct('product')">Product</a>
     </div>
- <button class="btnToggleSidebar" onclick="toggleSidebar()">
-        <i class="fa-solid fa-arrow-left"></i>
-        <i class="fa-solid fa-arrow-right"></i>
-      </button>
+    <button class="btnToggleSidebar" onclick="toggleSidebar()">
+      <i class="fa-solid fa-arrow-left"></i>
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
 
     <div class="main-content">
+      <div class="dashboard_container">WELCOME TO DASHBOARD</div>
       <div class="product_container">
-            <h1 class="title">WELCOME TO PRODUCT PAGE</h1>
+        <h1 class="title">WELCOME TO PRODUCT PAGE</h1>
 
         <div class="table">
           <table border="1">
@@ -47,8 +52,8 @@
           </table>
         </div>
       </div>
-       <div class="order_container">
-            <h1 class="title">WELCOME TO ORDER PAGE</h1>
+      <div class="order_container">
+        <h1 class="title">WELCOME TO ORDER PAGE</h1>
         <div class="table">
           <table border="1">
             <thead>
@@ -60,39 +65,55 @@
                 <th>Create At</th>
                 <th>Payment</th>
                 <th>Notes</th>
+                <th>Check Status</th>
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody id="tableOrder">
-
-            </tbody>
+            <tbody id="tableOrder"></tbody>
           </table>
         </div>
       </div>
-        <div class="user_container">
-                <h1 class="title">WELCOME TO USER PAGE</h1>
+      <div class="user_container">
+        <h1 class="title">WELCOME TO USER PAGE</h1>
 
         <div class="table">
           <table border="1">
             <thead>
               <tr>
                 <th>User Id</th>
-
-                <th>Product Image</th>
-                <th>Product Name</th>
-                <th>Product Price</th>
-                <th>Quantity</th>
-                <th>Add Product</th>
-
-                <th>Update Product</th>
-                <th>Delete Product</th>
+                <th>User Email</th>
+                <th>User Password</th>
+                <th>Detail Order</th>
+                <th>Delete User</th>
               </tr>
             </thead>
             <tbody id="tableUser"></tbody>
           </table>
         </div>
       </div>
+      <div class="orderDetail_container">
+        <h1 class="title">WELCOME TO ORDER PAGE</h1>
+        <div class="table">
+          <table border="1">
+            <thead>
+              <tr>
+                <th>OrderId</th>
+                <th>CustomerName</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Create At</th>
+                <th>Payment</th>
+                <th>Notes</th>
+                <th>Check Status</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="tableOrder"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    <script src="../main.js"></script>
 
     <script src="./admin.js"></script>
   </body>

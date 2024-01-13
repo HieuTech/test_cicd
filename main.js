@@ -1,5 +1,17 @@
 // import { uploadFileToFireBaseStorage } from "../firebase.js";
 
+//-------------------------Notify------------------------
+
+const notify = (str) => {
+  Toastify({
+    text: str,
+    duration: 3000, // Thời gian hiển thị toast (ms)
+    gravity: "center", // Vị trí hiển thị: top, bottom, left, right
+    position: "center", // Đặt vị trí tương đối: top-left, top-center, top-right, ...
+    backgroundColor: "green", // Màu nền
+    stopOnFocus: true, // Dừng hiển thị khi người dùng tập trung vào
+  }).showToast();
+};
 function renderHeader(userLogin = null) {
   return `
     <header>
@@ -154,9 +166,8 @@ function renderFooter() {
 }
 
 function renderProduct() {
-  // localStorage.setItem("products", JSON.stringify(products));
-  let products = JSON.parse(localStorage.getItem("products"))
-  
+  let products = JSON.parse(localStorage.getItem("products"));
+
   return (products = products
     .map((product) => {
       return `
@@ -171,7 +182,6 @@ function renderProduct() {
     })
     .join(""));
 }
-
 
 function createToken(userLogin) {
   let dataJsonStr = JSON.stringify({
@@ -249,7 +259,20 @@ function search() {
         result.push(products[i]);
       }
     }
-document.querySelector(".grid-container").innerHTML = renderProduct(result);
+    document.querySelector(".grid-container").innerHTML = result
+        .map((product) => {
+          return `
+     <div class="grid-item">
+        <img src="${product.productImage}"  class="product-image">
+        <h3 class="product-name">${product.productName}</h3>
+        <p class="product-price">${product.productPrice}</p>
+        <button class="buy-now" onclick="buyNow(${product.productId})">Buy Now</button>
+        <button class="add-to-cart" onclick="addToCart(${product.productId})">Add to Cart</button>
+    </div>
+  `;
+        })
+        .join("")
+    
   }
 }
 

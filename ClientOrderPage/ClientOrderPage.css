@@ -1,0 +1,55 @@
+.order-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full height */
+  background-color: #f0f0f0; /* Light grey background */
+}
+
+.order-content {
+  width: 80%; /* Adjust as needed */
+  margin: auto;
+}
+
+.order-title {
+  text-align: center;
+  color: #004d99; /* Dark blue */
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.styled-table th {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.styled-table td {
+  text-align: center;
+}
+
+.styled-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.styled-table tr:nth-child(odd) {
+  background-color: #ddf2f2; /* Light blue */
+}
+
+/* Additional colors for other elements */
+/* Example: */
+.status-pending {
+  color: orange;
+}
+
+.status-confirmed {
+  color: green;
+}
+
+.status-cancelled {
+  color: red;
+}
+
+/* Add more as needed */

@@ -23,39 +23,37 @@ function renderInfo(){
  });
 }
 
-
+//--------------------------SUBMIT CHECKOUT----------------------
 function submitForm(e) {
     e.preventDefault();
         let orders = JSON.parse(localStorage.getItem("orders") || "[]");
-let thoiGianHienTai = new Date();
-let ngay = thoiGianHienTai.getDate();
-let thang = thoiGianHienTai.getMonth() + 1; 
-let nam = thoiGianHienTai.getFullYear();
+ let thoiGianHienTai = new Date();
+ let ngay = thoiGianHienTai.getDate();
+ let thang = thoiGianHienTai.getMonth() + 1;
+ let nam = thoiGianHienTai.getFullYear();
 
-console.log("Ngày tháng năm hiện tại là: " + ngay + "/" + thang + "/" + nam);
-  let name = e.target.name.value;
-  let address = e.target.address.value;
-  let phone = e.target.phone.value;
-  let note = e.target.notes.value;
-  let payment = e.target.paymentMethod.value;
+ let name = e.target.name.value;
+ let address = e.target.address.value;
+ let phone = e.target.phone.value;
+ let note = e.target.notes.value;
+ let payment = e.target.paymentMethod.value;
 
-  if (!name) {
-    alert("Please enter your name.");
-    return false;
-  }
+ if (!name) {
+   alert("Please enter your name.");
+   return false;
+ }
 
-  if (!phone) {
-    alert("Please enter your phone number.");
-    return false;
-  } else if (!phone.startsWith("0") || phone.length !== 10) {
-    alert("Phone number must start with '0' and be 10 digits long.");
-    return false;
-  }
-  if (!address) {
-    alert("Please enter your address.");
-    return false;
-  }
-
+ if (!phone) {
+   alert("Please enter your phone number.");
+   return false;
+ } else if (!phone.startsWith("0") || phone.length !== 10) {
+   alert("Phone number must start with '0' and be 10 digits long.");
+   return false;
+ }
+ if (!address) {
+   alert("Please enter your address.");
+   return false;
+ }
   let order = {
     orderId: Math.ceil(Math.random() * Date.now()),
     name,
@@ -63,11 +61,12 @@ console.log("Ngày tháng năm hiện tại là: " + ngay + "/" + thang + "/" + 
     address,
     note,
     payment,
-    createAt:  `${ngay} + "/" + ${thang} + "/" + ${nam}`,
-    status: true
+    createAt:  `${ngay}/${thang}/${nam}`,
+    status: null
   };
   orders = [...orders, order]
   localStorage.setItem("orders", JSON.stringify(orders));
+
 
 
 //Reset Cart
@@ -78,23 +77,19 @@ console.log("Ngày tháng năm hiện tại là: " + ngay + "/" + thang + "/" + 
    users.forEach((user) => {
      if (user.email == tokenData.userLogin.email) {
        user.cart = []
+       user.orders.push(order)
      }
    });
-    localStorage.setItem("users",JSON.stringify(users));
+    
+   localStorage.setItem("users",JSON.stringify(users));
 
 
-  Toastify({
-    text: "Đặt hàng Thành Công!",
-    duration: 3000, // Thời gian hiển thị toast (ms)
-    gravity: "center", // Vị trí hiển thị: top, bottom, left, right
-    position: "center", // Đặt vị trí tương đối: top-left, top-center, top-right, ...
-    backgroundColor: "green", // Màu nền
-    stopOnFocus: true, // Dừng hiển thị khi người dùng tập trung vào
-  }).showToast();
+notify("Đặt hàng thành công");
   setTimeout(() => {
     window.location.href = "/";
   }, 3000);
 }
+
 
 
 renderInfo();

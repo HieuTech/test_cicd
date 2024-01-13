@@ -1,27 +1,41 @@
 function renderOrderClient() {
-  let orders = JSON.parse(localStorage.getItem("orders"));
-  
-  console.log(orders);
+  let users = JSON.parse(localStorage.getItem("users"));
   let showTableData = ``;
-  for (let i in orders) {
-    showTableData += `
+
+  users.forEach((user) => {
+    for (let i in user.orders) {
+      console.log(user.orders);
+      // return
+
+      showTableData += `
         <tr class="product-row">
-         
-
-      <td class="product-name">${orders[i].name}</td>
-
-  <td class="product-name">${orders[i].phone}</td>
-  <td class="product-price">${orders[i].address}</td>
-  <td class="product-quantity">${orders[i].createAt} </td>
-  <td class="product-quantity">${orders[i].payment} </td>
-  <td class="product-quantity">${orders[i].note} </td>
-  <td class="product-quantity">
-        <p class="status">Pending...</p>
-  </td>
-  
+      <td class="product-name">${user.orders[i].name}</td>
+  <td class="product-name">${user.orders[i].phone}</td>
+  <td class="product-price">${user.orders[i].address}</td>
+  <td class="product-quantity">${user.orders[i].createAt} </td>
+  <td class="product-quantity">${user.orders[i].payment} </td>
+  <td class="product-quantity">${user.orders[i].note} </td>
+  <td class="status">Pending...</td>
 </tr>`;
-  }
-
+        
+    }
+  });
+    
   document.getElementById("tableOrder").innerHTML = showTableData;
 }
-renderOrderClient()
+renderOrderClient();
+
+
+function renderOrderStatus(){
+    let orders = JSON.parse(localStorage.getItem("orders"));
+
+    orders.forEach((order) => {
+      let statusElement = document.querySelector(".status");
+      if (order.status) {
+        statusElement.innerHTML = ` Checked`;
+      } else {
+        statusElement.innerHTML = "Disapproved!";
+      }
+    });
+}
+renderOrderStatus();

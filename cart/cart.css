@@ -1,7 +1,7 @@
 #list{
 
       display: grid;
-     padding: 10px;
+
     grid-template-columns: repeat(10, 1fr); /* Tạo 4 cột */
      gap: 10px; /* Khoảng cách giữa các grid item */
 }
@@ -18,7 +18,7 @@
 
 .product-image {
   max-width: 100px;
-  height: 150px;
+  height: 200px;
   object-fit: cover;
 }
 

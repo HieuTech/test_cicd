@@ -4,12 +4,23 @@
 
 -Chức năng Logout.
 
--Thêm sản phẩm vào giỏ hàng và xoá sản phẩm khỏi giỏ hàng, hiển thị tổng sản phẩm và giá tiền mỗi trạng thái giỏ hàng sẽ tương ứng với 1 user.
+-Thêm sản phẩm vào giỏ hàng và tăng giảm sản phẩm trong giỏ hàng, hiển thị tổng sản phẩm và giá tiền mỗi trạng thái giỏ hàng sẽ tương ứng với 1 user.
 
 -Chức năng search sản phẩm theo tên sản phẩm.
 
 -Ở trang checkout, validate fields name, phone, address. Khi submit sẽ lưu lại các thông tin Order và xoá trạng thái giỏ hàng của User đó. 
 
+-Chat Facebook
 
-Quan li giỏ hàng.
-Quản lí user.
+Admin sẽ duyệt qua đơn hàng của user.
+
+-User có thể xem trạng thái đơn hàng của họ, pending, approved hay disapproved
+
+
+
+Deploy server, liên tục tích hợp liên tục triển khai CICD
+-Quản lí product (thêm, sửa, xoá)
+
+-Quan li order (kiểm tra approved, disapproved).
+
+-Quản lí user.   (Xoá user)

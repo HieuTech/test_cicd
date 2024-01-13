@@ -22,7 +22,8 @@ document
           email: result.user.email,
           password: hashPassword("EFDMWDMMWS"),
           avatar: result.user.photoURL,
-          cart:[]
+          cart:[],
+          orders:[]
         };
 
         users = [...users, userLogin];
