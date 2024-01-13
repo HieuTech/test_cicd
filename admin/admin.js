@@ -82,6 +82,7 @@ if (!localStorage.getItem("products")) {
 }
 // --------------------PRODUCT-------------
 function renderProductAdmin(products) {
+
   let showTableData = ``;
   for (let i in products) {
     showTableData += `

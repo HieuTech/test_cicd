@@ -29,9 +29,7 @@ function renderHeader(userLogin = null) {
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active adminPage" aria-current="page" href="http://127.0.0.1:5500/admin">Admin Page</a>
-                        </li>
+                      
                          <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">About</a>
                         </li>
@@ -242,6 +240,7 @@ function changeAvatar() {
   console.log(image);
   return;
 }
+//---------------------------SEARCH-------------------------------
 
 function search() {
   let products = JSON.parse(localStorage.getItem("products"));
