@@ -1,14 +1,22 @@
-import { signInWithGoogle, uploadFileToFireBaseStorage} from "../firebase.js";
+import { signInWithGoogle, uploadFileToFireBaseStorage } from "../firebase.js";
 
 if (checkLogin()) {
   window.location.href = "/";
 }
 
+function setAdmin(email,password) {
+  let admins = []
+  let admin = {
+    email,
+    password
+  };
+  admins.push(admin)
+  localStorage.setItem("admins", JSON.stringify(admins));
+}
 document
   .getElementById("signInWithGoogle")
   .addEventListener("click", async () => {
     try {
-
       let result = await signInWithGoogle();
       console.log(result);
 
@@ -22,8 +30,8 @@ document
           email: result.user.email,
           password: hashPassword("EFDMWDMMWS"),
           avatar: result.user.photoURL,
-          cart:[],
-          orders:[]
+          cart: [],
+          orders: [],
         };
 
         users = [...users, userLogin];
@@ -32,8 +40,7 @@ document
         let token = createToken(userLogin);
         localStorage.setItem("token", token);
         window.location.href = "/";
-      }
-      else{
+      } else {
         let token = createToken(checkUser);
         localStorage.setItem("token", token);
         window.location.href = "/";
@@ -45,7 +52,7 @@ document
     }
   });
 
-document.getElementById("signIn").addEventListener("submit", async(e) => {
+document.getElementById("signIn").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   //   let data = {
@@ -59,8 +66,6 @@ document.getElementById("signIn").addEventListener("submit", async(e) => {
   signIn(e);
 });
 
-
-
 function signIn(e) {
   e.preventDefault();
   let users = JSON.parse(localStorage.getItem("users") || "[]");
@@ -68,29 +73,35 @@ function signIn(e) {
   let email = e.target.email.value;
   let password = hashPassword(e.target.password.value);
 
+  let passwordAdmin = e.target.password.value;
+
   if (!email || !password) {
     alert("Email và Password không được để trống.");
     return;
   }
-  let user = users.find(
-    (user) => user.email == email && user.password == password
-  );
-  console.log(user);
-  
-  if (!user) {
-    alert("email or password ko dung");
-    return;
+
+  if (email == "admin@gmail.com" && passwordAdmin == "123") {
+    setAdmin(email,password);
+    window.location.href = "/";
+  }else{
+ let user = users.find(
+   (user) => user.email == email && user.password == password
+ );
+
+ if (!user) {
+   alert("email or password ko dung");
+   return;
+ }
+
+ let userLogin = {
+   email,
+   password,
+   avatar: user.avatar,
+ };
+
+ let token = createToken(userLogin);
+ localStorage.setItem("token", token);
+ window.location.href = "/";
   }
-
-  let userLogin = {
-    email,
-    password,
-    avatar: user.avatar
-  };
-
-  let token = createToken(userLogin);
-  localStorage.setItem("token", token);
-
-  window.location.href = "/";
+ 
 }
-

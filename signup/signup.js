@@ -13,6 +13,7 @@ function signUp(e) {
   let users = JSON.parse(localStorage.getItem("users") || "[]");
 
 
+
 if (!email || !password) {
   alert("Email và Password không được để trống.");
   return
@@ -23,6 +24,7 @@ if (!email || !password) {
   alert("Password không hợp lệ. Yêu cầu ít nhất 6 ký tự, 1 viết hoa, 1 số và 1 ký tự đặc biệt.");
   return
 } 
+
   let newUser = {
     id: "" + Math.ceil(Date.now() * Math.random()),
     email,

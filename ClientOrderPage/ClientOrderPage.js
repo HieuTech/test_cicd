@@ -5,8 +5,8 @@ function renderOrderClient() {
 
   users.forEach((user) => {
     if (user.email == tokenData.userLogin.email) {
-        // console.log(user.orders);
-        // return
+      // console.log(user.orders);
+      // return
       for (let i in user.orders) {
         showTableData += `
         <tr class="product-row">
@@ -26,16 +26,23 @@ function renderOrderClient() {
 }
 renderOrderClient();
 
-// function renderOrderStatus() {
-//   let orders = JSON.parse(localStorage.getItem("orders"));
+function renderOrderStatus() {
+  let tokenData = decodeToken(localStorage.getItem("token"));
+  let users = JSON.parse(localStorage.getItem("users") || "[]");
 
-//   orders.forEach((order) => {
-//     let statusElement = document.querySelector(".status");
-//     if (order.status) {
-//       statusElement.innerHTML = ` Checked`;
-//     } else {
-//       statusElement.innerHTML = "Disapproved!";
-//     }
-//   });
-// }
-// renderOrderStatus();
+
+  users.forEach((user) => {
+    if (user.email == tokenData.userLogin.email) {
+      user.orders.forEach((order) => {
+        
+      console.log(order.status);
+      return
+      });
+ 
+
+    }
+    // document.querySelector(".status").innerHTML = ;
+  });
+  localStorage.setItem("users", JSON.stringify(users));
+}
+renderOrderStatus();

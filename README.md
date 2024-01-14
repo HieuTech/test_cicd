@@ -6,7 +6,7 @@
 
 -Chức năng Logout.
 
--Thêm sản phẩm vào giỏ hàng và tăng giảm sản phẩm trong giỏ hàng, hiển thị tổng sản phẩm và giá tiền mỗi trạng thái giỏ hàng sẽ tương ứng với 1 user.
+-Thêm sản phẩm vào giỏ hàng và tăng giảm sản phẩm trong giỏ hàng, hiển thị tổng sản phẩm và giá tiền mỗi trạng thái giỏ hàng sẽ tương ứng với 1 user. Nếu đơn hàng trống thì ko đc đến trang thanh toán.
 
 -Chức năng search sản phẩm theo tên sản phẩm.
 
@@ -14,15 +14,19 @@
 
 -Chat Facebook
 
-Admin sẽ duyệt qua đơn hàng của user.
-
 -User có thể xem trạng thái đơn hàng của họ, pending, approved hay disapproved
-
-
-Deploy server, liên tục tích hợp liên tục triển khai CICD
 
 -Quản lí product (thêm, sửa, xoá)
 
--Quan li order (kiểm tra approved, disapproved).
+-Quan li order (kiểm tra approved, disapproved)
 
 -Quản lí user.   (Xoá user)
+
+Deploy server, liên tục tích hợp liên tục triển khai CICD
+
+
+
+-Chưa làm đc phân quyền cho user khác ko vao đc trang admin,
+-chưa lưu trữ DB trên firebase
+-chưa chưa làm đc chức năng approve hay reject đơn hàng
+-chưa gửi đc email.

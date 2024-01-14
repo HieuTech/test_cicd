@@ -65,24 +65,25 @@ let products = [
   },
 ];
 //-------------------CHECKADMINACCOUNT------------------------
-
 function renderDashBoard() {
-  let users = JSON.parse(localStorage.getItem("users"));
-  let tokenData = decodeToken(localStorage.getItem("token"));
-  users.forEach((user) => {
-    if (tokenData.userLogin.email != "admin@gmail.com") {
+  let admins = JSON.parse(localStorage.getItem("admins"));
+  let token = JSON.parse(localStorage.getItem("token"));
+
+  admins.forEach((admin) => {
+    console.log(admin);
+    if (!admin || admin.email !== "admin@gmail.com" || token) {
       window.location.href = "/";
     }
   });
 }
 renderDashBoard();
+//vao admin chưa chạy hàm này
 
 if (!localStorage.getItem("products")) {
   localStorage.setItem("products", JSON.stringify(products));
 }
 // --------------------PRODUCT-------------
 function renderProductAdmin(products) {
-
   let showTableData = ``;
   for (let i in products) {
     showTableData += `
@@ -194,48 +195,81 @@ function renderOrderAdmin() {
 
 function checkOrder(e, orderId) {
   e.preventDefault();
+  let tokenData = decodeToken(localStorage.getItem("token"));
   let users = JSON.parse(localStorage.getItem("users") || "[]");
   let orders = JSON.parse(localStorage.getItem("orders"));
-  let tokenData = decodeToken(localStorage.getItem("token"));
 
   let selectedValue = document.querySelector(
     'input[name="orderStatus"]:checked'
   ).value;
 
-  orders.forEach((order) => {
-    if (order.orderId == orderId) {
-      if (selectedValue == "Approved") {
-        orders.forEach((order) => {
-          order.status = true;
-          document.querySelector(".order-status").innerHTML = order.status;
-        });
-        localStorage.setItem("orders", JSON.stringify(orders));
+  if (selectedValue == "Approved") {
+    orders.forEach((order) => {
+      if (order.orderId == orderId) {
+        order.status = true;
+      }
+      localStorage.setItem("orders", JSON.stringify(orders));
+    });
 
-        users.forEach((user) => {
-          if (user.email == tokenData.userLogin.email) {
-            user.orders.forEach((order) => {
-              order.status = true;
-            });
-          }
+    users.forEach((user) => {
+      if (user.email == tokenData.userLogin.email) {
+        user.orders.forEach((order) => {
+          if (order.orderId == orderId) order.status = true;
         });
-        localStorage.setItem("users", JSON.stringify(users));
-      } else {
-        orders.forEach((order) => {
-          order.status = false;
-          document.querySelector(".order-status").innerHTML = order.status;
+      }
+    });
+    localStorage.setItem("users", JSON.stringify(users));
+  } else {
+    orders.forEach((order) => {
+      if (order.orderId == orderId) {
+        order.status = false;
+      }
+      localStorage.setItem("orders", JSON.stringify(orders));
+    });
+    users.forEach((user) => {
+      if (user.email == tokenData.userLogin.email) {
+        user.orders.forEach((order) => {
+          if (order.orderId == orderId) order.status = false;
         });
-        localStorage.setItem("orders", JSON.stringify(orders));
-        users.forEach((user) => {
-          if (user.email == tokenData.userLogin.email) {
-            user.orders.forEach((order) => {
-              order.status = true;
-            });
-          }
-        });
-        localStorage.setItem("users", JSON.stringify(users));
-      } 
-    }
-  });
+      }
+    });
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+
+  //   orders.forEach((order) => {
+  //     if (order.orderId == orderId) {
+  //       if (selectedValue == "Approved") {
+  //         orders.forEach((order) => {
+  //           order.status = true;
+  //           document.querySelector(".order-status").innerHTML = order.status;
+  //         });
+  //         localStorage.setItem("orders", JSON.stringify(orders));
+
+  //         users.forEach((user) => {
+  //           if (user.email == tokenData.userLogin.email) {
+  //             user.orders.forEach((order) => {
+  //               order.status = true;
+  //             });
+  //           }
+  //         });
+  //         localStorage.setItem("users", JSON.stringify(users));
+  //       } else {
+  //         orders.forEach((order) => {
+  //           order.status = false;
+  //           document.querySelector(".order-status").innerHTML = order.status;
+  //         });
+  //         localStorage.setItem("orders", JSON.stringify(orders));
+  //         users.forEach((user) => {
+  //           if (user.email == tokenData.userLogin.email) {
+  //             user.orders.forEach((order) => {
+  //               order.status = true;
+  //             });
+  //           }
+  //         });
+  //         localStorage.setItem("users", JSON.stringify(users));
+  //       }
+  //     }
+  //   });
 }
 
 // --------------------------------------------USERS------------------------------
