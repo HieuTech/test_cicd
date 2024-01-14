@@ -17,7 +17,9 @@
     <div class="sidebar">
       <a>ADMIN</a>
       <a href="/">HomePage</a>
-      <a href="#" id="dashboard" onclick="clickRender('dashboard')">Dashboard</a>
+      <a href="#" id="dashboard" onclick="clickRender('dashboard')"
+        >Dashboard</a
+      >
       <a href="#" id="user" onclick="clickRender('user')">User</a>
       <a href="#" id="order" onclick="clickRender('order')">Order</a>
       <a href="#" id="product" onclick="clickRender('product')">Product</a>
@@ -63,7 +65,7 @@
                 <th>Payment</th>
                 <th>Notes</th>
                 <th>Status</th>
-
+                <th>Delete Order</th>
               </tr>
             </thead>
             <tbody id="tableOrder"></tbody>
@@ -105,11 +107,7 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody id="tableOrderDetail">
-
-
-                
-            </tbody>
+            <tbody id="tableOrderDetail"></tbody>
           </table>
         </div>
       </div>

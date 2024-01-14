@@ -18,15 +18,15 @@
 
 -Quản lí product (thêm, sửa, xoá)
 
--Quan li order (kiểm tra approved, disapproved)
+-Quan li order (kiểm tra approved, disapproved, xoá đơn )
 
 -Quản lí user.   (Xoá user)
 
 Deploy server, liên tục tích hợp liên tục triển khai CICD
 
 
-
--Chưa làm đc phân quyền cho user khác ko vao đc trang admin,
--chưa lưu trữ DB trên firebase
--chưa chưa làm đc chức năng approve hay reject đơn hàng
--chưa gửi đc email.
+-- Định hướng phát triển
+-phân quyền cho user khác ko vao đc trang admin,
+- lưu trữ DB trên firebase
+-chức năng approve hay reject đơn hàng
+- gui email.

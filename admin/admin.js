@@ -183,14 +183,22 @@ function renderOrderAdmin() {
   <td class="product-quantity">${orders[i].payment} </td>
   <td class="product-quantity">${orders[i].note} </td>
   <td class="order-status">${orders[i].status} </td>
-  <td class="product-quantity">
- 
-  </td>
+    <td class="order-delete"><button onclick="deleteOrder(${orders[i].orderId})">Delete Order</button> </td>
+
   
 </tr>`;
   }
 
   document.getElementById("tableOrder").innerHTML = showTableData;
+}
+function deleteOrder(orderId) {
+
+    if(!confirm("Do you want to delete this order?")) return
+  let orders = JSON.parse(localStorage.getItem("orders"));
+
+  orders = orders.filter((order) => order.orderId != orderId);
+  localStorage.setItem("orders", JSON.stringify(orders));
+  renderOrderAdmin();
 }
 
 function checkOrder(e, orderId) {
