@@ -36,7 +36,7 @@ function renderHeader(userLogin = null) {
                             <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">About</a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">Contact Us</a>
+                            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/">Contact me</a>
                         </li>
                             <input class="form-control me-2 search_infor" type="search" placeholder="Search" aria-label="Search">
                             <button onclick="search()" class="btn btn-outline-success">Search</button>

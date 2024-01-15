@@ -2,7 +2,7 @@
 
 -Khi đăng nhập thành công sẽ mã hoá thông tin user, cấp cho user mã token khi họ đăng nhập.
 
--Chức năng Logout.
+-reset password
 
 -Thêm sản phẩm vào giỏ hàng và tăng giảm sản phẩm trong giỏ hàng, hiển thị tổng sản phẩm và giá tiền mỗi trạng thái giỏ hàng sẽ tương ứng với 1 user. Nếu đơn hàng trống thì ko đc đến trang thanh toán.
 
