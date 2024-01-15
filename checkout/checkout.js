@@ -9,7 +9,7 @@ function renderInfo(){
 
  users.forEach((user) => {
    if (user.email == tokenData.userLogin.email) {
-     console.log(user.email);
+
      
      if(user.cart.length === 0){
         alert("Cart is empty, Continious to shop?");
@@ -36,9 +36,7 @@ function renderInfo(){
 //--------------------------SUBMIT CHECKOUT----------------------
 
 document.getElementById("submitForm").addEventListener("submit",(e)=>{
-
-
-    submitForm(e)
+    submitForm(e);
 })
 
 function submitForm(e) {

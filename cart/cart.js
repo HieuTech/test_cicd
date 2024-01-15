@@ -56,7 +56,7 @@ function showProduct() {
 
   users.forEach((user) => {
     if (user.email == tokenData.userLogin.email) {
-      console.log(user.email);
+
       user.cart.forEach((cart) => {
         totalPrice +=
           parseInt(cart.productPrice.replace(" VND", "").replace(".", "")) *
