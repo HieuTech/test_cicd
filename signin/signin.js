@@ -58,11 +58,13 @@ document.getElementById("signIn").addEventListener("submit", async (e) => {
   //   let data = {
   //     email: e.target.email.value,
   //     password: e.target.password.value,
-  //     avatar: await   uploadFileToFireBaseStorage(e.target.file.files[0])
+  //     avatar: await  uploadFileToFireBaseStorage(e.target.file.files[0])
+
 
   //   }
   // console.log(data);
   //   return
+
   signIn(e);
 });
 
