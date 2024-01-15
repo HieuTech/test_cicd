@@ -1,3 +1,5 @@
+
+
 let totalPrice = 0;
 let quantity = 0;
 
@@ -32,6 +34,13 @@ function renderInfo(){
 }
 
 //--------------------------SUBMIT CHECKOUT----------------------
+
+document.getElementById("submitForm").addEventListener("submit",(e)=>{
+
+
+    submitForm(e)
+})
+
 function submitForm(e) {
     e.preventDefault();
         let orders = JSON.parse(localStorage.getItem("orders") || "[]");
@@ -86,6 +95,16 @@ function submitForm(e) {
      if (user.email == tokenData.userLogin.email) {
        user.cart = []
        user.orders.push(order)
+        console.log(user.email);
+       userEmail = user.email.replace("@gmail.com","");
+       sendEmail(
+         "Xác nhận tạo đơn hàng thành công",
+         userEmail,
+         `Đơn hàng của bạn đã được tạo thành công và sẽ giao trong 2 ngày tới.
+       Best Regard.
+       `
+       );
+
      }
    });
     
@@ -97,7 +116,8 @@ notify("Đặt hàng thành công");
     window.location.href = "/";
   }, 3000);
 }
-
+     
 renderInfo()
+
 
 

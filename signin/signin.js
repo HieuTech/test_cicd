@@ -53,7 +53,7 @@ document
   });
 
 document.getElementById("signIn").addEventListener("submit", async (e) => {
-  e.preventDefault();
+
 
   //   let data = {
   //     email: e.target.email.value,

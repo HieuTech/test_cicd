@@ -25,7 +25,8 @@
 <body>
   <div class="content">
     <div id="root">
-    <div class="grid-container"></div>
+      <div class="grid-container"></div>
+      <!-- <button onclick="sendEmail(prompt('Nhập nội dung gửi email'))">Click sendemail</button> -->
      </div>
      <div class="chatFacebook">
        <!-- Messenger Chat plugin Code -->
@@ -71,8 +72,13 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.js"></script>
 
+    <!-- <script type="module" >
+      import {sendEmail} from './email.js'
+      window.sendEmail = sendEmail;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 
-    <script src="./cart/cart.js"></script>
+      <script src="./cart/cart.js"></script>
     <script  src="./main.js"></script>
     <script  src="./home.js"></script>
     <script src="./admin/"></script>

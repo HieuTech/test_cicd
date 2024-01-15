@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./checkout.css" />
   </head>
   <body>
-    <form onsubmit="submitForm(event)">
+    <form onsubmit="submitForm(event)" id="submitForm">
       <div class="info">
         <h3>Order Summary</h3>
         <p id="total-products"></p>
@@ -37,6 +37,14 @@
         <button class="btn" type="submit">Submit</button>
       </div>
     </form>
+
+     <script type="module" >
+      import {sendEmail} from '../email.js'
+      window.sendEmail = sendEmail;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.js"></script>
 
     <script src="../main.js"></script>

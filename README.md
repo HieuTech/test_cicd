@@ -1,7 +1,5 @@
 -Đăng nhập Google, hiển thị thông tin đúng theo từng user(email,avatar khi họ đăng nhập), Validate email đúng định dạng, Password phải có ít nhất 6 kí tự, 1 viết hoa, 1 số, 1 kí tự đặc biệt. Tương tự như đăng nhập, đăng ký thông thường.
 
--Nếu là user thì ko thể truy cập vào trang admin.
-
 -Khi đăng nhập thành công sẽ mã hoá thông tin user, cấp cho user mã token khi họ đăng nhập.
 
 -Chức năng Logout.
@@ -10,7 +8,7 @@
 
 -Chức năng search sản phẩm theo tên sản phẩm.
 
--Ở trang checkout, validate fields name, phone, address. Khi submit sẽ lưu lại các thông tin Order và xoá trạng thái giỏ hàng của User đó. 
+-Ở trang checkout, validate fields name, phone, address. Khi submit sẽ lưu lại các thông tin Order và xoá trạng thái giỏ hàng của User đó. Gửi email khi user order thành công.
 
 -Chat Facebook
 
@@ -26,7 +24,8 @@ Deploy server, liên tục tích hợp liên tục triển khai CICD
 
 
 -- Định hướng phát triển
+-reset password
+-cho user chỉnh sửa thông tin cá nhân.
 -phân quyền cho user khác ko vao đc trang admin,
 - lưu trữ DB trên firebase
 -chức năng approve hay reject đơn hàng
-- gui email.
