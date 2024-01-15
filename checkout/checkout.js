@@ -98,6 +98,7 @@ function submitForm(e) {
         console.log(user.email);
        userEmail = user.email.replace("@gmail.com","");
        sendEmail(
+        user.email,
          "Xác nhận tạo đơn hàng thành công",
          userEmail,
          `Đơn hàng của bạn đã được tạo thành công và sẽ giao trong 2 ngày tới.
