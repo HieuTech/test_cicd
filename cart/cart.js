@@ -21,7 +21,25 @@ function addToCart(productId) {
 
   users.forEach((user) => {
     if (user.email == tokenData.userLogin.email) {
-      user.cart.push(product);
+        if(user.cart.productId == productId){
+             user.cart.forEach((cart) => {
+               totalPrice +=
+                 parseInt(
+                   cart.productPrice.replace(" VND", "").replace(".", "")
+                 ) * cart.quantity;
+               document.querySelector(
+                 ".totalPrice"
+               ).innerHTML = `TotalPrice:  ${totalPrice} VND`;
+               quantity += cart.quantity;
+               document.querySelector(
+                 ".quantity"
+               ).innerHTML = `Quantity:  ${quantity} Unit`;
+             });
+             document.getElementById("list").innerHTML = renderCart(user.cart);
+        }else{
+             user.cart.push(product);
+        }
+     
     }
   });
   localStorage.setItem("users", JSON.stringify(users));

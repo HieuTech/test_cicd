@@ -1,0 +1,48 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0; /* Màu nền của trang */
+}
+
+form {
+  width: 300px; /* Độ rộng của form */
+  background-color: #ffffff; /* Màu nền của form */
+  padding: 20px;
+  border-radius: 8px; /* Bo góc form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng cho form */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333333; /* Màu chữ của label */
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc; /* Màu viền input */
+  border-radius: 4px; /* Bo góc input */
+}
+
+button {
+  background-color: #3498db; /* Màu nền của nút */
+  color: #ffffff; /* Màu chữ của nút */
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px; /* Bo góc nút */
+  cursor: pointer;
+}
+
+/* Hover effect cho nút */
+button:hover {
+  background-color: #2980b9;
+}

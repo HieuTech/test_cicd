@@ -27,17 +27,19 @@ Deploy server và CICD
 -- Định hướng phát triển
 -thêm trang chi tiết sản phẩm.
 -khi user đăng nhập sẽ có email gửi đến để check email có tồn tại ko.
--reset password.
 -cho user chỉnh sửa thông tin cá nhân.
 -phân quyền cho user khác ko vao đc trang admin,
--lưu trữ DB trên firebase
+-sort theo tên, giá.
+-lưu trữ image trên firebase
 -chức năng approve hay reject đơn hàng
+-show more sản phẩm.
+-responsive
 
 
 
 
 
-** hoisting
+** hoisting (declared function)
 tự động đẩy giá trị lên đầu, ap dụng cho var.
 callback function là gọi 1 hàm dưới dạng tham số và thực thi hàm đó trong 1 hàm.
 
